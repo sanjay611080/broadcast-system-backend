@@ -47,8 +47,6 @@ export async function uploadContent(params: {
     rotationMinutes: params.rotationMinutes,
   });
 
-  // Register in subject's rotation slot. Schedule entries describe the
-  // teacher-defined ordering and per-content duration.
   const slot = await getOrCreateSlot(params.subject);
   await upsertSchedule({
     contentId: content.id,

@@ -28,7 +28,7 @@ export const env = {
   supabaseServiceRoleKey: required('SUPABASE_SERVICE_ROLE_KEY'),
   supabaseBucket: process.env.SUPABASE_STORAGE_BUCKET || 'content',
 
-  // Upstash Redis (REST). Both are required if REDIS_ENABLED=true.
+  // Upstash Redis 
   redisEnabled,
   upstashRedisRestUrl: redisEnabled
     ? required('UPSTASH_REDIS_REST_URL')

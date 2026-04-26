@@ -5,7 +5,6 @@ export async function cacheGet<T>(key: string): Promise<T | null> {
   const redis = getRedis();
   if (!redis) return null;
   try {
-    // The Upstash REST client auto-deserializes JSON values.
     const value = await redis.get<T>(key);
     return value ?? null;
   } catch {
@@ -48,11 +47,9 @@ export async function cacheDel(pattern: string): Promise<void> {
       await redis.del(pattern);
     }
   } catch {
-    // best-effort
   }
 }
 
-/** Cache key builders so all parts of the app use the same conventions. */
 export const cacheKeys = {
   liveByTeacher: (teacherId: string, subject?: string) =>
     `live:teacher:${teacherId}:${subject ?? 'all'}`,

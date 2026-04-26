@@ -10,8 +10,6 @@ const router = Router();
 router.get('/health', (_req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
 
 router.use('/auth', authRoutes);
-// Public broadcast must be registered BEFORE the authenticated /content
-// router so `/content/live/:teacherId` is matched without hitting auth.
 router.use('/content', broadcastRoutes);
 router.use('/content', contentRoutes);
 router.use('/principal', approvalRoutes);

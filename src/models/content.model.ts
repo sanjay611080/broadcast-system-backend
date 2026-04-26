@@ -131,10 +131,6 @@ export async function rejectContent(params: {
   return rows[0] ?? null;
 }
 
-/**
- * Returns all approved content for a teacher whose [start_time, end_time]
- * window currently contains `now`. This is the "eligible for rotation" set.
- */
 export async function findLiveEligibleByTeacher(params: {
   teacherId: string;
   subject?: string;

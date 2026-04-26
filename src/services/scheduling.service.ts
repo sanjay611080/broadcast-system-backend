@@ -79,15 +79,11 @@ export async function getLiveForTeacher(query: LiveQuery): Promise<LiveResult> {
   const cacheKey = cacheKeys.liveByTeacher(query.teacherId, query.subject);
   const cached = await cacheGet<LiveResult>(cacheKey);
   if (cached) {
-    // Mark as cached but otherwise return as-is. Scheduler/cache TTL is short
-    // (default 30s) so the active slot stays accurate against rotation.
     return { ...cached, cached: true };
   }
 
   const teacher = await findUserById(query.teacherId);
   if (!teacher || teacher.role !== 'teacher') {
-    // Spec: invalid subject → empty (not error). We extend the same behavior
-    // to invalid teacher to avoid leaking enumeration info on the public API.
     return {
       teacher: { id: query.teacherId, name: 'unknown' },
       served_at: now.toISOString(),
@@ -160,7 +156,6 @@ export async function getLiveForTeacher(query: LiveQuery): Promise<LiveResult> {
 
   await cacheSet(cacheKey, result);
 
-  // Fire-and-forget analytics — don't block the public response.
   Promise.allSettled(
     slots.map((s) =>
       recordView({

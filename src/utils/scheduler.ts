@@ -1,23 +1,3 @@
-/**
- * Subject-based rotation scheduler.
- *
- * Inputs: a list of *eligible* content items (already filtered to:
- *   - status = approved
- *   - now ∈ [start_time, end_time]
- *   - belonging to a given teacher).
- *
- * Behavior:
- *   1. Group items by subject — each subject rotates independently.
- *   2. Within a subject, sort by created_at (stable order) so the rotation is
- *      deterministic regardless of insertion timing.
- *   3. Anchor the rotation at the *earliest start_time of the group*. This way
- *      the rotation is deterministic and identical across server restarts —
- *      important for caching and for multiple replicas serving the same answer.
- *   4. Build a cumulative duration table (durations may vary per item).
- *      Compute position-within-cycle using `(now - anchor) % cycleLength`.
- *   5. Pick the first item whose cumulative bucket exceeds that position.
- */
-
 export type ScheduleEligible = {
   id: string;
   subject: string;
@@ -32,8 +12,8 @@ export type ActiveSlot<T extends ScheduleEligible> = {
   active: T;
   rotation: {
     indexInCycle: number;
-    cycleLength: number; // seconds
-    elapsedInCycle: number; // seconds
+    cycleLength: number;
+    elapsedInCycle: number; 
     nextRotationAt: Date;
     totalInRotation: number;
   };

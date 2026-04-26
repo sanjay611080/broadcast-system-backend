@@ -1,11 +1,3 @@
-/**
- * One-shot project bootstrap:
- *   1. Ensure Supabase Storage bucket exists (public-read).
- *   2. Apply schema.sql.
- *   3. Insert default principal + teacher accounts and slots.
- *
- * Idempotent — safe to run multiple times.
- */
 import fs from 'node:fs';
 import path from 'node:path';
 import { supabase } from '../config/storage';
@@ -21,7 +13,6 @@ async function ensureBucket() {
   const exists = buckets?.some((b) => b.name === env.supabaseBucket);
   if (exists) {
     console.log('[bootstrap]   bucket already exists.');
-    // Ensure it's public so file_url works for students.
     const { error: updateErr } = await supabase.storage.updateBucket(env.supabaseBucket, {
       public: true,
     });

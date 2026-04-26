@@ -17,6 +17,5 @@ export function getRedis(): Redis | null {
 }
 
 export async function closeRedis(): Promise<void> {
-  // Upstash REST client uses fetch under the hood — nothing to close.
   client = null;
 }

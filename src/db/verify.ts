@@ -1,9 +1,3 @@
-/**
- * Connectivity diagnostic. Verifies each external dependency end-to-end:
- *   1. Postgres (DATABASE_URL)
- *   2. Supabase Storage (SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)
- *   3. Upstash Redis (UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN)
- */
 import 'dotenv/config';
 import { pool, closePool } from '../config/db';
 import { supabase } from '../config/storage';

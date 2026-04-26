@@ -2,12 +2,10 @@ import type { Request, Response, NextFunction } from 'express';
 import multer from 'multer';
 import { ApiError } from '../utils/ApiError';
 
-// 404 fallback — must be mounted *after* all routes.
 export function notFoundHandler(_req: Request, res: Response): void {
   res.status(404).json({ error: 'Route not found' });
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function errorHandler(
   err: unknown,
   _req: Request,

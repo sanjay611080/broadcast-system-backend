@@ -1,5 +1,4 @@
 -- Content Broadcasting System schema
--- Compatible with Supabase Postgres. Run via `npm run migrate`.
 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
