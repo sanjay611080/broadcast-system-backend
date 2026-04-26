@@ -9,11 +9,7 @@ export interface ScheduleRow {
   created_at: Date;
 }
 
-/**
- * Upserts a schedule row that ties a content item into the rotation pool of
- * its subject's slot. rotation_order = (current max + 1) at insert time so the
- * teacher's intended ordering is preserved without needing manual sequencing.
- */
+
 export async function upsertSchedule(params: {
   contentId: string;
   slotId: string;

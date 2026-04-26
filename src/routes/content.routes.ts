@@ -7,10 +7,6 @@ import { validate } from '../middlewares/validate';
 
 const router = Router();
 
-// IMPORTANT: do NOT mount requireAuth on the whole router. The public
-// `/content/live/:teacherId` endpoint shares this prefix and must remain
-// unauthenticated. Apply auth per-route instead.
-
 // Teacher: upload content (multipart/form-data)
 router.post(
   '/',

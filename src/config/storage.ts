@@ -9,7 +9,7 @@ export const STORAGE_BUCKET = env.supabaseBucket;
 
 /**
  * Uploads a buffer to Supabase Storage and returns both the storage path
- * and a public URL. The bucket is expected to be public-read.
+ * and a public URL.
  */
 export async function uploadToStorage(params: {
   path: string;

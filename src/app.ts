@@ -12,7 +12,7 @@ import { env } from './config/env';
 export function createApp(): Express {
   const app = express();
 
-  app.set('trust proxy', 1); // for rate-limit and req.ip behind proxies
+  app.set('trust proxy', 1); 
   app.use(helmet());
   app.use(cors());
   app.use(express.json({ limit: '1mb' }));

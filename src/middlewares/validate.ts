@@ -19,7 +19,6 @@ export function validate(schema: Schema, source: Source = 'body') {
         ),
       );
     }
-    // Reassign sanitized value back so downstream handlers see coerced types.
     (req as unknown as Record<Source, unknown>)[source] = value;
     next();
   };
