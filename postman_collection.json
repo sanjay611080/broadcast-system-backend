@@ -6,7 +6,7 @@
     "description": "Backend API for the Content Broadcasting System assignment.\n\nFlow:\n1. Run **Auth → Login Principal** — saves `principalToken`.\n2. Run **Auth → Login Teacher** — saves `teacherToken` and `teacherId`.\n3. Run **Content (Teacher) → Upload Content** — attach a JPG/PNG/GIF file. Saves `contentId`.\n4. Run **Approval (Principal) → Approve Content**.\n5. Run **Public Broadcast → Live by Teacher** — should return the active slot.\n\nDefault seeded credentials:\n- principal@example.com / Principal@123\n- maths@example.com / Teacher@123\n- science@example.com / Teacher@123"
   },
   "variable": [
-    { "key": "baseUrl", "value": "http://localhost:4000/api" },
+    { "key": "baseUrl", "value": "https://content-broadcasting-backend-task.onrender.com/api" },
     { "key": "principalToken", "value": "" },
     { "key": "teacherToken", "value": "" },
     { "key": "teacherId", "value": "" },
